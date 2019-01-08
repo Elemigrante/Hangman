@@ -1,12 +1,28 @@
 # Hangman
 
-Hangman is a paper and pencil guessing game for two or more players. One player thinks of a word, and the other(s) tries to guess it by suggesting letters, within a certain number of guesses. The player guessing the word may, at any time, attempt to guess the whole word. If the word is correct, the game is over and the guesser wins. Otherwise, the other player may choose to penalize the guesser by adding an element to the diagram. On the other hand, if the other player makes enough incorrect guesses to allow his opponent to complete the diagram, the game is also over, this time with the guesser losing. However, the guesser can also win by guessing all the letters or numbers that appears in the word, thereby completing the word, before the diagram is completed. For more information use <a href = https://en.wikipedia.org/wiki/Hangman_(game)>Wiki</a> Game is written in the Ruby language. If you want to add new words use file words.txt.
+## Принцип игры
 
-## How to run
+Один из игроков загадывает слово — пишет на бумаге первую и последнюю букву слова и отмечает места для остальных букв,
+например чертами (существует также вариант, когда изначально все буквы слова неизвестны).
+Также рисуется [[виселица]] с петлёй.
 
-Ruby 2.x.x versions is required to run the program.
+Согласно традиции русских лингвистических игр, слово должно быть [[Имя существительное|именем существительным]], [[Имя нарицательное|нарицательным]] в [[Именительный падеж|именительном падеже]] единственного числа, либо множественного числа при отсутствии у слова формы единственного числа.
 
-Type in the terminal while in the root directory of the program:
+Второй игрок предлагает букву, которая может входить в это слово. Если такая буква есть в слове, то первый игрок пишет её над соответствующими этой букве чертами — столько раз, сколько она встречается в слове. Если такой буквы нет, то к виселице добавляется круг в петле, изображающий голову. Второй игрок продолжает отгадывать буквы до тех пор, пока не отгадает всё слово. За каждый неправильный ответ первый игрок добавляет одну часть [[туловище|туловища]] к виселице (обычно их 6: [[голова]], туловище, 2 [[рука|руки]] и 2 [[нога|ноги]], существует также вариант с 8 частями — добавляются ступни, а также самый длинный вариант, когда сначала за неотгаданную букву рисуются части самой виселицы).
+
+Если туловище в виселице нарисовано полностью, то отгадывающий игрок проигрывает, считается повешенным. Если игроку удаётся угадать слово, он выигрывает и может загадывать слово.
+
+Подробнее об игре можно усна перейдя на <a href = https://ru.wikipedia.org/wiki/Виселица_(игра)>Вики</a> 
+
+## Важно
+Игра написана на Ruby. 
+Если слов не достаточно добавте новые в words.txt.
+
+## Как запустить
+
+Для запуска используйте Ruby 2.x.x версии.
+
+Находясь в корневой папке программы, используя терминал выполните:
 ```
 ruby hangman.rb
 ```
