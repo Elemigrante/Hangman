@@ -5,7 +5,7 @@ class WordReader
       lines = file.readlines
       file.close
     rescue SystemCallError
-      abort 'Файл со словами не найден!'
+      puts 'Файл со словами не найден!'
     end
     lines.sample.chomp
   end
