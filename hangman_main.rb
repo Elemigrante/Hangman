@@ -1,6 +1,6 @@
-require_relative 'game'
-require_relative 'result_printer'
-require_relative 'word_reader'
+require_relative 'lib/game'
+require_relative 'lib/result_printer'
+require_relative 'lib/word_reader'
 
 puts "Игра виселица. Версия 4.\n\n"
 sleep 1
