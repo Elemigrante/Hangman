@@ -2,7 +2,7 @@ require_relative 'lib/game'
 require_relative 'lib/result_printer'
 require_relative 'lib/word_reader'
 
-puts "Игра виселица. Версия 4.\n\n"
+puts "Игра виселица. Версия 1.\n\n"
 sleep 1
 
 printer = ResultPrinter.new
