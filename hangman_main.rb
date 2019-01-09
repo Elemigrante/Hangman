@@ -6,7 +6,6 @@ puts "Игра виселица. Версия 4.\n\n"
 sleep 1
 
 printer = ResultPrinter.new
-
 reader = WordReader.new
 
 current_path = File.dirname(__FILE__)
