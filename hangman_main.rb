@@ -1,6 +1,6 @@
-require_relative 'game.rb'
-require_relative 'result_printer.rb'
-require_relative 'word_reader.rb'
+require_relative 'game'
+require_relative 'result_printer'
+require_relative 'word_reader'
 
 puts "Игра виселица. Версия 4.\n\n"
 sleep 1
