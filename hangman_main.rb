@@ -1,5 +1,5 @@
 require_relative 'game.rb'
-require_relative 'print_result.rb'
+require_relative 'result_printer.rb'
 require_relative 'word_reader.rb'
 
 puts "Игра виселица. Версия 4.\n\n"
