@@ -14,7 +14,7 @@ class Game
   end
 
   def ask_next_letter
-    puts "\n Введите следующую букву"
+    puts "\nВведите следующую букву"
     letter = ''
     letter = STDIN.gets.downcase.chomp while letter == ''
     next_step(letter)

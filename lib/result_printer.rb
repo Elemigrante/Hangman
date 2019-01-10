@@ -1,12 +1,10 @@
 class ResultPrinter
   def initialize
     @status_image = []
-
-    current_path = File.dirname(__FILE__)
     counter = 0
 
     while counter <= 7
-      file_name = current_path + "/image/#{counter}.txt"
+      file_name = "#{__dir__}/../image/#{counter}.txt"
 
       begin
         file = File.new(file_name, 'r:UTF-8')
