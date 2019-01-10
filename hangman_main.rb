@@ -13,8 +13,7 @@ word = reader.read_from_file(current_path + '/data/words.txt')
 
 game = Game.new(word)
 
-while
-  game.status.zero?
+while game.status.zero?
   printer.print_status(game)
   game.ask_next_letter
 end
