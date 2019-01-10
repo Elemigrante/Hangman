@@ -12,7 +12,7 @@ reader = WordReader.new
 # end
 
 current_path = File.dirname(__FILE__)
-word = reader.read_from_file(current_path + 'data/words.txt')
+word = reader.read_from_file(current_path + '/data/words.txt')
 
 game = Game.new(word)
 
