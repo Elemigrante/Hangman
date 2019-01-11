@@ -32,32 +32,38 @@ class Game
     letters << letter
 
     case letter
-    when 'ё' then
-      letters << 'е'
-    when 'е' then
-      letters << 'ё'
-    when 'и' then
-      letters << 'й'
-    when 'й' then
-      letters << 'и'
+    when 'ё' then letters << 'е'
+    when 'е' then letters << 'ё'
+    when 'и' then letters << 'й'
+    when 'й' then letters << 'и'
+    else
+      return
     end
   end
 
-  def next_step(letter)
-    if @status == -1 || @status == 1
-    end
+  def solved?
+    (@letters - @good_letters).empty?
+  end
 
-    if @good_letters.include?(letter) || @bad_letters.include?(letter)
-    end
+  def repeated?(letter)
+    @good_letters.include?(letter) || @bad_letters.include?(letter)
+  end
+
+  def lost?
+    @errors >= 7
+  end
+
+  def next_step(letter)
+    return if @status == -1 || @status == 1
+    return if repeated?(letter)
 
     if is_good?(letter)
       add_letter_to(@good_letters, letter)
-
-      @status = 1 if (@letters - @good_letters).empty?
+      @status = 1 if solved?
     else
       add_letter_to(@bad_letters, letter)
       @errors += 1
-      @status = -1 if @errors >= 7
+      @status = -1 if lost?
     end
   end
 
