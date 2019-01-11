@@ -4,16 +4,18 @@ require_relative 'lib/word_reader'
 
 puts "Игра 'Виселица'. Вер.2.\n\n"
 sleep 1
-puts 'Отгадайте слово.'
+
 
 printer = ResultPrinter.new
 
-begin
 reader = WordReader.new
 word_current_path = "#{__dir__}/data/words.txt"
-word = reader.read_from_file(word_current_path)
+
+begin
+  word = reader.read_from_file(word_current_path)
 rescue SystemCallError
-  abort 'Файл со словами не найден!'
+  puts 'Файл со словами не найден!'
+  exit
 end
 
 game = Game.new(word)
