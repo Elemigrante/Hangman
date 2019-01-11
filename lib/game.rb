@@ -1,4 +1,6 @@
 class Game
+  MAX_ERRORS = 7
+
   attr_reader :letters, :good_letters, :bad_letters, :status, :errors
 
   def initialize(word)
@@ -20,30 +22,51 @@ class Game
     next_step(letter)
   end
 
-  def next_step(letter)
-    if @status == -1 || @status == 1
-    end
+  def is_good?(letter)
+    @letters.include?(letter) ||
+      (letter == 'е' && @letters.include?('ё')) ||
+      (letter == 'ё' && @letters.include?('е')) ||
+      (letter == 'и' && @letters.include?('й')) ||
+      (letter == 'й' && @letters.include?('и'))
+  end
 
-    if @good_letters.include?(letter) || @bad_letters.include?(letter)
-    end
+  def add_letter_to(letters, letter)
+    letters << letter
 
-    if @letters.include?(letter) ||
-        (letter == 'е' && @letters.include?('ё')) ||
-        (letter == 'ё' && @letters.include?('е')) ||
-        (letter == 'и' && @letters.include?('й')) ||
-        (letter == 'й' && @letters.include?('и'))
-
-      @good_letters << letter
-      @good_letters << 'ё' if letter == 'е'
-      @good_letters << 'е' if letter == 'ё'
-      @good_letters << 'и' if letter == 'й'
-      @good_letters << 'й' if letter == 'и'
-      
-      @status = 1 if (@letters - @good_letters).empty?
+    case letter
+    when 'ё' then letters << 'е'
+    when 'е' then letters << 'ё'
+    when 'и' then letters << 'й'
+    when 'й' then letters << 'и'
     else
-      @bad_letters << letter
-      @errors += 1
-      @status = -1 if @errors >= 7
+      return
     end
   end
+
+  def solved?
+    (@letters - @good_letters).empty?
+  end
+
+  def repeated?(letter)
+    @good_letters.include?(letter) || @bad_letters.include?(letter)
+  end
+
+  def lost?
+    @errors >= MAX_ERRORS
+  end
+
+  def next_step(letter)
+    return if @status == -1 || @status == 1
+    return if repeated?(letter)
+
+    if is_good?(letter)
+      add_letter_to(@good_letters, letter)
+      @status = 1 if solved?
+    else
+      add_letter_to(@bad_letters, letter)
+      @errors += 1
+      @status = -1 if lost?
+    end
+  end
+
 end
