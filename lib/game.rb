@@ -1,7 +1,6 @@
 class Game
-  MAX_ERRORS = 7
-
   attr_reader :letters, :good_letters, :bad_letters, :status, :errors
+  MAX_ERRORS = 7
 
   def initialize(word)
     @letters = get_letters(word)
