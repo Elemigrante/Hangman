@@ -1,9 +1,9 @@
 class ResultPrinter
-  def initialize
+  def initialize(game)
     @status_image = []
     counter = 0
 
-    while counter <= 7
+    while counter <= game.max_errors
       file_name = "#{__dir__}/../image/#{counter}.txt"
 
       begin
@@ -30,15 +30,15 @@ class ResultPrinter
 
     print_hangman(game.errors)
 
-    if game.errors >= 7
+    if game.lost?
       puts 'Вы проиграли'
       puts
       puts "Загаданное слово: #{game.letters.join('')}"
       puts
-    elsif (game.letters - game.good_letters).empty?
+    elsif game.won?
       puts "Поздравляем! Вы выиграли!\n\n"
     else
-      puts 'У вас осталось попыток: ' + (7 - game.errors).to_s
+      puts "У вас осталось попыток: #{game.errors_left}"
     end
   end
 

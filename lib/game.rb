@@ -8,11 +8,19 @@ class Game
     @errors = 0
     @good_letters = []
     @bad_letters = []
-    @status = 0
+    @status = :in_progress # :won, :lost
   end
 
   def get_letters(word)
     word.downcase.split('')
+  end
+
+  def max_errors
+    MAX_ERRORS
+  end
+
+  def errors_left
+    MAX_ERRORS - @errors
   end
 
   def ask_next_letter
@@ -52,20 +60,28 @@ class Game
   end
 
   def lost?
-    @errors >= MAX_ERRORS
+    @status == :lost || @errors >= MAX_ERRORS
+  end
+
+  def in_progress?
+    @status == :in_progress
+  end
+
+  def won?
+    @status == :won
   end
 
   def next_step(letter)
-    return if @status == -1 || @status == 1
+    return if @status == :lost || @status == :won
     return if repeated?(letter)
 
     if is_good?(letter)
       add_letter_to(@good_letters, letter)
-      @status = 1 if solved?
+      @status = :won if solved?
     else
       add_letter_to(@bad_letters, letter)
       @errors += 1
-      @status = -1 if lost?
+      @status = :lost if lost?
     end
   end
 

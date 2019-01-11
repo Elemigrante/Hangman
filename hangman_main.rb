@@ -5,8 +5,6 @@ require_relative 'lib/word_reader'
 puts "Игра 'Виселица'. Вер.2.\n\n"
 sleep 1
 
-printer = ResultPrinter.new
-
 reader = WordReader.new
 word_current_path = "#{__dir__}/data/words.txt"
 
@@ -19,7 +17,9 @@ end
 
 game = Game.new(word)
 
-while game.status.zero?
+printer = ResultPrinter.new(game)
+
+while game.in_progress?
   printer.print_status(game)
   game.ask_next_letter
 end
