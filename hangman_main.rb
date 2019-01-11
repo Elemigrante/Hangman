@@ -5,7 +5,6 @@ require_relative 'lib/word_reader'
 puts "Игра 'Виселица'. Вер.2.\n\n"
 sleep 1
 
-
 printer = ResultPrinter.new
 
 reader = WordReader.new
