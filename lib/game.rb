@@ -20,6 +20,18 @@ class Game
     next_step(letter)
   end
 
+  def is_good?(letter)
+    @letters.include?(letter) ||
+      (letter == 'е' && @letters.include?('ё')) ||
+      (letter == 'ё' && @letters.include?('е')) ||
+      (letter == 'и' && @letters.include?('й')) ||
+      (letter == 'й' && @letters.include?('и'))
+  end
+
+  def add_letter_to(letters, letter)
+
+  end
+
   def next_step(letter)
     if @status == -1 || @status == 1
     end
@@ -27,18 +39,13 @@ class Game
     if @good_letters.include?(letter) || @bad_letters.include?(letter)
     end
 
-    if @letters.include?(letter) ||
-        (letter == 'е' && @letters.include?('ё')) ||
-        (letter == 'ё' && @letters.include?('е')) ||
-        (letter == 'и' && @letters.include?('й')) ||
-        (letter == 'й' && @letters.include?('и'))
-
+    if is_good?(letter)
       @good_letters << letter
       @good_letters << 'ё' if letter == 'е'
       @good_letters << 'е' if letter == 'ё'
       @good_letters << 'и' if letter == 'й'
       @good_letters << 'й' if letter == 'и'
-      
+
       @status = 1 if (@letters - @good_letters).empty?
     else
       @bad_letters << letter
