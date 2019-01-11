@@ -2,7 +2,7 @@ require_relative 'lib/game'
 require_relative 'lib/result_printer'
 require_relative 'lib/word_reader'
 
-puts "Игра 'Виселица'. Вер.2.\n\n"
+VERSION = "Игра 'Виселица'. Версия 3. (c) Хороший программист\n\n"
 sleep 1
 
 reader = WordReader.new
@@ -16,6 +16,7 @@ rescue SystemCallError
 end
 
 game = Game.new(word)
+game.version = VERSION
 
 printer = ResultPrinter.new(game)
 

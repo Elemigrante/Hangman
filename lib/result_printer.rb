@@ -24,6 +24,7 @@ class ResultPrinter
 
   def print_status(game)
     cls
+    puts game.version
 
     puts "\nСлово: #{get_word_for_print(game.letters, game.good_letters)}"
     puts "Ошибки (#{game.errors}): #{game.bad_letters.join(', ')}"

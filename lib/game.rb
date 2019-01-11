@@ -1,5 +1,8 @@
 class Game
-  attr_reader :letters, :good_letters, :bad_letters, :status, :errors
+  attr_reader :letters, :good_letters, :bad_letters, :errors, :status
+
+  attr_accessor :version
+
   MAX_ERRORS = 7
 
   def initialize(word)
@@ -30,11 +33,11 @@ class Game
   end
 
   def is_good?(letter)
-    @letters.include?(letter) ||
-      (letter == 'е' && @letters.include?('ё')) ||
-      (letter == 'ё' && @letters.include?('е')) ||
-      (letter == 'и' && @letters.include?('й')) ||
-      (letter == 'й' && @letters.include?('и'))
+    letters.include?(letter) ||
+      (letter == 'е' && letters.include?('ё')) ||
+      (letter == 'ё' && letters.include?('е')) ||
+      (letter == 'и' && letters.include?('й')) ||
+      (letter == 'й' && letters.include?('и'))
   end
 
   def add_letter_to(letters, letter)
