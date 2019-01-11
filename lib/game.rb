@@ -29,7 +29,18 @@ class Game
   end
 
   def add_letter_to(letters, letter)
+    letters << letter
 
+    case letter
+    when 'ё' then
+      letters << 'е'
+    when 'е' then
+      letters << 'ё'
+    when 'и' then
+      letters << 'й'
+    when 'й' then
+      letters << 'и'
+    end
   end
 
   def next_step(letter)
@@ -40,17 +51,14 @@ class Game
     end
 
     if is_good?(letter)
-      @good_letters << letter
-      @good_letters << 'ё' if letter == 'е'
-      @good_letters << 'е' if letter == 'ё'
-      @good_letters << 'и' if letter == 'й'
-      @good_letters << 'й' if letter == 'и'
+      add_letter_to(@good_letters, letter)
 
       @status = 1 if (@letters - @good_letters).empty?
     else
-      @bad_letters << letter
+      add_letter_to(@bad_letters, letter)
       @errors += 1
       @status = -1 if @errors >= 7
     end
   end
+
 end
